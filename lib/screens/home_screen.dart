@@ -1,6 +1,9 @@
+import 'package:app02_homescreen_595/data/services_list.dart' hide services;
 import 'package:app02_homescreen_595/widgets/bottomNavBar.dart';
 import 'package:app02_homescreen_595/widgets/quick_actions.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/services_actions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,45 +17,54 @@ class HomeScreen extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.center,
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Welcome'),
-              Text('Justin '
-                  'Phil',
-                style: Theme.of(
-                  context,).textTheme.labelMedium,
+              Text(
+                'Justin Phil',
+                style: Theme.of(context).textTheme.labelMedium,
               )
             ],
           ),
         ),
         actions: [
           CircleAvatar(
-            backgroundImage: AssetImage(
-              'assets/prof1.png',
-            ),
+            backgroundImage: AssetImage('assets/prof1.png'),
           )
         ],
-        actionsPadding: EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 20),
         leadingWidth: 200,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: QuickActions(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              QuickActions(),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Text('Services'),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ServicesActions(),
+              ),
+            ],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey,
-          shape: CircleBorder(),
-          onPressed: () {},
-        child: Icon(Icons.home,color: Colors.white,),
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: const Icon(Icons.home, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
       bottomNavigationBar: bottomNavBar(),
     );
   }
 }
+
